@@ -3,6 +3,7 @@ from flask import jsonify
 from flask import request
 import paho.mqtt.client as mqtt
 import os
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -21,7 +22,7 @@ def return_all():
 
 @app.route('/', methods=['POST'])
 def addOne():
-    message = request.get_json()
+    message = {request.get_data(): datetime.now()}
     client.publish("python/test", str(message))
     messages.append(message)
     return jsonify({'messages': messages})
