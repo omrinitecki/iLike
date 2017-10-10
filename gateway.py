@@ -2,10 +2,15 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 import paho.mqtt.client as mqtt
+import os
 
 
 app = Flask(__name__)
-client = mqtt.Client("gduitmnm")
+broker_address = "m12.cloudmqtt.com"
+port = "17516"
+user = "gduitmnm"
+password = "XbW2LU2qZZIo"
+client = mqtt.Client("Omri")
 messages = []
 
 
@@ -23,8 +28,9 @@ def addOne():
 
 
 def main():
-    client.connect("m12.cloudmqtt.com")
-    app.run(debug=True)
+    client.username_pw_set(user, password=password)
+    client.connect(broker_address, port=port)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
 
 
 if __name__ == "__main__":
