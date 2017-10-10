@@ -6,10 +6,10 @@ import os
 
 
 app = Flask(__name__)
-broker_address = os.environ["MQTT-HOST"]
-port = int(os.environ["MQTT-PORT"])
-user = os.environ["MQTT-USER"]
-password = os.environ["MQTT-PWD"]
+broker_address = "m12.cloudmqtt.com"#os.environ.get("MQTT-HOST", "m12.cloudmqtt.com")
+port = 17516#int(os.environ.get("MQTT-PORT", 17516))
+user = "gduitmnm"#os.environ.get("MQTT-USER", "gduitmnm")
+password = "XbW2LU2qZZIo"#os.environ.get("MQTT-PWD", "XbW2LU2qZZIo")
 client = mqtt.Client("Python")
 messages = []
 
