@@ -7,10 +7,10 @@ import os
 
 app = Flask(__name__)
 broker_address = "m12.cloudmqtt.com"
-port = "17516"
+port = 17516
 user = "gduitmnm"
 password = "XbW2LU2qZZIo"
-client = mqtt.Client("Omri")
+client = mqtt.Client("Python")
 messages = []
 
 
@@ -30,7 +30,7 @@ def addOne():
 def main():
     client.username_pw_set(user, password=password)
     client.connect(broker_address, port=port)
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
 
 if __name__ == "__main__":
