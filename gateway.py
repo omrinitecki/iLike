@@ -7,10 +7,10 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-broker_address = os.environ.get("MQTT-HOST", "")
-port = int(os.environ.get("MQTT-PORT", ""))
-user = os.environ.get("MQTT-USER", "")
-password = os.environ.get("MQTT-PWD", "")
+broker_address = str(os.environ["MQTT-HOST"])
+port = int(os.environ["MQTT-PORT"])
+user = str(os.environ.get["MQTT-USER"])
+password = str(os.environ["MQTT-PWD"])
 client = mqtt.Client("Python")
 messages = []
 
@@ -22,7 +22,7 @@ def return_all():
 
 @app.route('/', methods=['POST'])
 def addOne():
-    message = {request.get_data(): datetime.now()}
+    message = jsonify({request.get_data(): datetime.now()})
     client.publish("python/test", str(message))
     messages.append(message)
     return jsonify({'messages': messages})
