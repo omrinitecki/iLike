@@ -22,8 +22,8 @@ def return_all():
 
 @app.route('/', methods=['POST'])
 def addOne():
-    message = {str(request.get_data()): "from omri at " + str(datetime.now())}
-    client.publish("python/test", str(message))
+    message = "button was pushed at " + str(datetime.now())
+    client.publish("python/test", message)
     messages.append(message)
     return jsonify({'messages': messages})
 
