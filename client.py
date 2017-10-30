@@ -9,7 +9,7 @@ def main():
         cv2.imshow("avocado", image)
         key = cv2.waitKey(0)
         if key == ord(" "):
-            requests.post("http://127.0.0.1:5000", json={"omri": str(datetime.now())})
+            requests.post("http://127.0.0.1:5000", data="hi")
             response = requests.get("http://127.0.0.1:5000")
             print(response.json())
         elif key == ord("q"):
