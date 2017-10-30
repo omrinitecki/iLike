@@ -22,7 +22,7 @@ def return_all():
 
 @app.route('/', methods=['POST'])
 def addOne():
-    message = {request.get_data(): "from omri at " + str(datetime.now())}
+    message = {str(request.get_data()): "from omri at " + str(datetime.now())}
     client.publish("python/test", str(message))
     messages.append(message)
     return jsonify({'messages': messages})
